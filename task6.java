@@ -21,3 +21,14 @@ public class Main {
              .forEach(System.out::println);
     }
 }
+
+Input:
+5
+Bike 10
+Cab 15
+Auto 8
+Cab 20
+Bike 5
+    Output:
+Cab 15
+Cab 20
