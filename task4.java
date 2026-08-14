@@ -1,6 +1,5 @@
-
-
 import java.util.*;
+import java.util.stream.*;
 
 public class task4 {
     public static void main(String[] args) {
@@ -9,32 +8,19 @@ public class task4 {
         String text = sc.nextLine();
         String pattern = sc.nextLine();
 
-        int[] lps = new int[pattern.length()];
+        int m = pattern.length();
 
-        for (int i = 1, len = 0; i < pattern.length();) {
-            if (pattern.charAt(i) == pattern.charAt(len)) {
-                lps[i++] = ++len;
-            } else if (len > 0) {
-                len = lps[len - 1];
-            } else {
-                lps[i++] = 0;
-            }
-        }
+        String result = IntStream.range(0, text.length() - m + 1)
+                .filter(i -> text.substring(i, i + m).equals(pattern))
+                .mapToObj(i -> String.valueOf(i))
+                .reduce("", (a, b) -> a + b + " ");
 
-        for (int i = 0, j = 0; i < text.length();) {
-            if (text.charAt(i) == pattern.charAt(j)) {
-                i++;
-                j++;
-
-                if (j == pattern.length()) {
-                    System.out.print((i - j) + " ");
-                    j = lps[j - 1];
-                }
-            } else if (j > 0) {
-                j = lps[j - 1];
-            } else {
-                i++;
-            }
-        }
+        System.out.println(result);
     }
 }
+
+Input:
+ABABAB
+AB
+    output:
+0 2 4
