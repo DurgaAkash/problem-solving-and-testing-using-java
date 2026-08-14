@@ -16,3 +16,15 @@ class EmployeeSalary {
     }
 }
 
+
+Input:
+enter the no of employees:
+3
+10000
+20000
+30000
+output:    
+Updated Salaries of Employees
+11000
+22000
+33000
