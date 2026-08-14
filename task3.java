@@ -22,3 +22,9 @@ public class task3 {
         System.out.println(max);
     }
 }
+
+Input:
+5
+-2 1 -3 4 5
+    output:
+9
