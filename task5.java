@@ -1,23 +1,5 @@
-
 import java.util.*;
-
-class BankAccount {
-    private double balance;
-
-    public void deposit(double amount) {
-        balance += amount;
-    }
-
-    public void withdraw(double amount) {
-        if (amount <= balance) {
-            balance -= amount;
-        }
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-}
+import java.util.stream.*;
 
 public class task5 {
     public static void main(String[] args) {
@@ -26,19 +8,31 @@ public class task5 {
         int n = sc.nextInt();
         sc.nextLine();
 
-        BankAccount account = new BankAccount();
+        List<String> operations = new ArrayList<>();
 
         for (int i = 0; i < n; i++) {
-            String[] operation = sc.nextLine().split(" ");
-            double amount = Double.parseDouble(operation[1]);
-
-            if (operation[0].equals("Deposit")) {
-                account.deposit(amount);
-            } else {
-                account.withdraw(amount);
-            }
+            operations.add(sc.nextLine());
         }
 
-        System.out.println((int) account.getBalance());
+        double balance = operations.stream()
+                .filter(x -> x.startsWith("Deposit"))
+                .map(x -> Double.parseDouble(x.split(" ")[1]))
+                .reduce(0.0, (a, b) -> a + b);
+
+        double withdraw = operations.stream()
+                .filter(x -> x.startsWith("Withdraw"))
+                .map(x -> Double.parseDouble(x.split(" ")[1]))
+                .reduce(0.0, (a, b) -> a + b);
+
+        System.out.println((int)(balance - withdraw));
     }
 }
+
+Input:5
+Deposit 1000
+Deposit 500
+Withdraw 200
+Deposit 300
+Withdraw 100
+    Output:
+1500
