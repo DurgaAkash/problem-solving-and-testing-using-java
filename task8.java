@@ -47,4 +47,13 @@ public class task8 {
         );
     }
 }
+Input:
+5 4
+1 2
+2 3
+3 4
+4 5
+1 5
+    output:
+YES
 
