@@ -31,3 +31,17 @@ public class task2 {
                 ));
     }
 }
+
+Input:
+6
+TEMP01 60
+TEMP02 70
+TEMP01 80
+TEMP03 45
+TEMP02 90
+TEMP03 55
+
+Output:
+TEMP02 80.0
+TEMP01 70.0
+TEMP03 55.0
